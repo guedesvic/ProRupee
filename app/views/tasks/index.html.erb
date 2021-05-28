@@ -1,0 +1,29 @@
+<h1>Listagem de Tarefas</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Descrição</th>
+    <th>Status</th>
+    <th>Projeto</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.name %></td>
+    <td><%= task.description %></td>
+    <td><%= task.status %></td>
+    <td><%= task.project %></td>
+    <td><%= link_to 'Mostrar', [task.project, task] %></td>
+    <td><%= link_to 'Editar', edit_project_task_path(task.project, task) %></td>
+    <td><%= link_to 'Deletar', [task.project, task], method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova tarefa', new_project_task_path(params[:project_id]) %>
